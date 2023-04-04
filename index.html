@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>TransLATTE</title>
+  </head>
+  <body>
+    <main>
+      <section class="section__one">
+        <div class="languages__areas">
+          <select
+            name="languages"
+            id="translate-from"
+            class="selectbox translate__from"
+          ></select>
+          <button id="swap" class="swap">
+            <img src="src/swap.svg" alt="swap icon" />
+          </button>
+          <select
+            name="languages"
+            id="translate-to"
+            class="selectbox translate__to"
+          ></select>
+        </div>
+        <div class="textbox__areas">
+          <textarea
+            name="language-first"
+            id="language-first"
+            class="language__first"
+            rows="10"
+            maxlength="312"
+          ></textarea>
+          <textarea
+            readonly
+            name="language-second"
+            id="language-second"
+            class="language__second"
+            rows="10"
+            maxlength="312"
+          ></textarea>
+        </div>
+      </section>
+    </main>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
