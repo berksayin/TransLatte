@@ -65,12 +65,14 @@ function debounce(cb, delay = 1000) {
 
 const updateDebounceText = debounce((text) => {
   translateTheText(text, languagesSeconds.value, languagesFirsts.value);
-  translatedTextArea.value = translateTheText.translatedText;
+  translatedTextArea.value = translatedText;
 }, 500);
 
 // * Diller aynı olmasın diye sol ve sağı ayırıyor.
 function fixTheLanguages() {
-  languagesFirsts.value === 'en' ? (languagesSeconds.value = 'tr') : (languagesSeconds.value = 'en');
+  languagesFirsts.value === 'en'
+    ? (languagesSeconds.value = 'tr')
+    : (languagesSeconds.value = 'en');
 
   // if (languagesFirsts.value === 'en') {
   //   languagesSeconds.value = 'tr';

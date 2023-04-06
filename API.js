@@ -1,8 +1,4 @@
-export function apiCheck() {
-  console.log('API called!');
-}
-
-export function translateTheText(text, targetLanguage, language) {
+export async function translateTheText(text, targetLanguage, language) {
   const encodedParams = new URLSearchParams();
   encodedParams.append('q', text);
   encodedParams.append('target', targetLanguage);
@@ -19,12 +15,21 @@ export function translateTheText(text, targetLanguage, language) {
     body: encodedParams,
   };
 
-  const translatedText = fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+  try {
+    const response = await fetch(
+      'https://google-translate1.p.rapidapi.com/language/translate/v2',
+      options
+    );
+    const data = await response.json();
+    const translatedText = data.data.translations[0].translatedText;
+    console.log('newData :>> ', translatedText);
+  } catch (err) {
+    console.log('err :>> ', err);
+  }
+}
 
-  console.log('translatedText :>> ', translatedText);
+export function setTheTranslatedText() {
+  // TODO: Buraya yazılan fonksiyon ile değer atanıp gönderilecek.
 }
 
 // TODO: Async Await'e uygun hale getirilecek
