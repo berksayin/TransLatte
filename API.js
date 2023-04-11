@@ -16,20 +16,23 @@ export async function translateTheText(text, targetLanguage, language) {
   };
 
   try {
-    const response = await fetch(
-      'https://google-translate1.p.rapidapi.com/language/translate/v2',
-      options
-    );
+    const response = await fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options);
     const data = await response.json();
     const translatedText = data.data.translations[0].translatedText;
     console.log('newData :>> ', translatedText);
+    currentTranslatedText = translatedText;
+    setTheTranslatedText();
   } catch (err) {
     console.log('err :>> ', err);
   }
 }
 
+let currentTranslatedText;
+
 export function setTheTranslatedText() {
-  // TODO: Buraya yazılan fonksiyon ile değer atanıp gönderilecek.
+  // TODO
+  console.log('currentTranslatedText :>> ', currentTranslatedText);
+  return currentTranslatedText;
 }
 
 // TODO: Async Await'e uygun hale getirilecek

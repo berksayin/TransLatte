@@ -1,7 +1,7 @@
 // TODO: Debounce ve Throttle araştırılacak, uygun olana göre yapılacak.
 
-import { apiCheck } from './API.js';
 import { translateTheText } from './API.js';
+import { setTheTranslatedText } from './API.js';
 
 // * ATAMALAR
 const mainTextArea = document.getElementById('language-first');
@@ -65,14 +65,12 @@ function debounce(cb, delay = 1000) {
 
 const updateDebounceText = debounce((text) => {
   translateTheText(text, languagesSeconds.value, languagesFirsts.value);
-  translatedTextArea.value = translatedText;
+  translatedTextArea.value = setTheTranslatedText(); // TODO
 }, 500);
 
 // * Diller aynı olmasın diye sol ve sağı ayırıyor.
 function fixTheLanguages() {
-  languagesFirsts.value === 'en'
-    ? (languagesSeconds.value = 'tr')
-    : (languagesSeconds.value = 'en');
+  languagesFirsts.value === 'en' ? (languagesSeconds.value = 'tr') : (languagesSeconds.value = 'en');
 
   // if (languagesFirsts.value === 'en') {
   //   languagesSeconds.value = 'tr';
