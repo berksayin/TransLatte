@@ -1,3 +1,7 @@
+import { creditentials } from '../../constants/constants.js';
+
+export let currentTranslatedText;
+
 export async function translateTheText(text, targetLanguage, language) {
   const encodedParams = new URLSearchParams();
   encodedParams.append('q', text);
@@ -9,7 +13,7 @@ export async function translateTheText(text, targetLanguage, language) {
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
       'Accept-Encoding': 'application/gzip',
-      'X-RapidAPI-Key': '0624dce8dbmsh1d87739cb145dffp160ae2jsn0fe66216d8f1',
+      'X-RapidAPI-Key': creditentials.translateApiKey,
       'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com',
     },
     body: encodedParams,
@@ -19,20 +23,10 @@ export async function translateTheText(text, targetLanguage, language) {
     const response = await fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options);
     const data = await response.json();
     const translatedText = data.data.translations[0].translatedText;
-    console.log('newData :>> ', translatedText);
     currentTranslatedText = translatedText;
-    setTheTranslatedText();
   } catch (err) {
     console.log('err :>> ', err);
   }
-}
-
-let currentTranslatedText;
-
-export function setTheTranslatedText() {
-  // TODO
-  console.log('currentTranslatedText :>> ', currentTranslatedText);
-  return currentTranslatedText;
 }
 
 // TODO: Async Await'e uygun hale getirilecek
